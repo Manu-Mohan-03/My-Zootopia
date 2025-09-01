@@ -12,14 +12,15 @@ def get_animal_info(fox_data):
     for fox in fox_data:
         # For Serialization
         animal_info_str += '<li class="cards__item">\n'
+        animal_info_str += f'<div class="card__title">{fox["name"]}</div>\n'
+        animal_info_str += '<p class="card__text">\n'
 
-        animal_info_str += 'Name: ' + fox["name"] + '<br/>\n'
         if fox.get("characteristics").get("diet"):
-            animal_info_str += 'Diet: ' + fox["characteristics"]["diet"] + '<br/>\n'
+            animal_info_str += '<strong>Diet: </strong>' + fox["characteristics"]["diet"] + '<br/>\n'
         if fox.get("locations") and len(fox.get("locations")) > 0:
-            animal_info_str += 'Location: ' + fox["locations"][0]  + '<br/>\n'
+            animal_info_str += '<strong>Location: </strong>' + fox["locations"][0]  + '<br/>\n'
         if fox.get("characteristics").get("type"):
-            animal_info_str += 'Type: ' + fox["characteristics"]["type"]  + '<br/>\n'
+            animal_info_str += '<strong>Type: </strong>' + fox["characteristics"]["type"]  + '<br/>\n'
         animal_info_str += '</li>\n'
     return animal_info_str
 
