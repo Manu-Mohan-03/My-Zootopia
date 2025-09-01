@@ -8,15 +8,19 @@ def load_data(file_path):
 
 def get_animal_info(fox_data):
     animal_info_str = ""
+    # adding information to a string
     for fox in fox_data:
-        animal_info_str += "Name: " + fox['name'] + "\n"
+        # For Serialization
+        animal_info_str += '<li class="cards__item">\n'
+
+        animal_info_str += 'Name: ' + fox["name"] + '<br/>\n'
         if fox.get("characteristics").get("diet"):
-            animal_info_str += "Diet: " + fox["characteristics"]["diet"] + "\n"
+            animal_info_str += 'Diet: ' + fox["characteristics"]["diet"] + '<br/>\n'
         if fox.get("locations") and len(fox.get("locations")) > 0:
-            animal_info_str += "Location: " + fox["locations"][0]  + "\n"
+            animal_info_str += 'Location: ' + fox["locations"][0]  + '<br/>\n'
         if fox.get("characteristics").get("type"):
-            animal_info_str += "Type: " + fox["characteristics"]["type"]  + "\n"
-        animal_info_str += "\n"
+            animal_info_str += 'Type: ' + fox["characteristics"]["type"]  + '<br/>\n'
+        animal_info_str += '</li>\n'
     return animal_info_str
 
 def edit_html_template(file_path,animals_info):
