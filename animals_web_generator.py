@@ -11,18 +11,23 @@ def get_animal_info(fox_data):
     # adding information to a string
     for fox in fox_data:
         # For Serialization
-        animal_info_str += '<li class="cards__item">\n'
-        animal_info_str += f'<div class="card__title">{fox["name"]}</div>\n'
-        animal_info_str += '<p class="card__text">\n'
-
-        if fox.get("characteristics").get("diet"):
-            animal_info_str += '<strong>Diet: </strong>' + fox["characteristics"]["diet"] + '<br/>\n'
-        if fox.get("locations") and len(fox.get("locations")) > 0:
-            animal_info_str += '<strong>Location: </strong>' + fox["locations"][0]  + '<br/>\n'
-        if fox.get("characteristics").get("type"):
-            animal_info_str += '<strong>Type: </strong>' + fox["characteristics"]["type"]  + '<br/>\n'
-        animal_info_str += '</li>\n'
+        animal_info_str += serialize_animal(fox)
     return animal_info_str
+
+
+def serialize_animal(animal_obj):
+    output = '<li class="cards__item">\n'
+    output += f'<div class="card__title">{animal_obj["name"]}</div>\n'
+    output += '<p class="card__text">\n'
+    if animal_obj.get("characteristics").get("diet"):
+        output += f'<strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}<br/>\n'
+    if animal_obj.get("locations") and len(animal_obj.get("locations")) > 0:
+        output += f'<strong>Location:</strong> {animal_obj["locations"][0]}<br/>\n'
+    if animal_obj.get("characteristics").get("type"):
+        output += f'<strong>Type:</strong> {animal_obj["characteristics"]["type"]}<br/>\n'
+    output += '</li>\n'
+    return output
+
 
 def edit_html_template(file_path,animals_info):
     """Open the html file for reading"""
@@ -41,6 +46,7 @@ def main():
     animals_info = get_animal_info(animals_data)
     animals_html = edit_html_template("animals_template.html",animals_info)
     write_animals_html("animals.html", animals_html)
+
 
 if __name__ == "__main__":
     main()
