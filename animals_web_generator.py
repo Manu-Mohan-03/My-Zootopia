@@ -18,13 +18,16 @@ def get_animal_info(fox_data):
 def serialize_animal(animal_obj):
     output = '<li class="cards__item">\n'
     output += f'<div class="card__title">{animal_obj["name"]}</div>\n'
-    output += '<p class="card__text">\n'
+    output += '<div class="card__text">\n'
+    output += '<ul>\n'
     if animal_obj.get("characteristics").get("diet"):
-        output += f'<strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}<br/>\n'
+        output += f'<li><strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}</li>\n'
     if animal_obj.get("locations") and len(animal_obj.get("locations")) > 0:
-        output += f'<strong>Location:</strong> {animal_obj["locations"][0]}<br/>\n'
+        output += f'<li><strong>Location:</strong> {animal_obj["locations"][0]}</li>\n'
     if animal_obj.get("characteristics").get("type"):
-        output += f'<strong>Type:</strong> {animal_obj["characteristics"]["type"]}<br/>\n'
+        output += f'<li><strong>Type:</strong> {animal_obj["characteristics"]["type"]}</li>\n'
+    output += '</ul>\n'
+    output += '</div>\n'
     output += '</li>\n'
     return output
 
