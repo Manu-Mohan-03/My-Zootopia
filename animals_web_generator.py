@@ -19,7 +19,7 @@ def get_animal_info(fox_data, skin_type):
         if skin_type is None:
             # For Serialization
             animal_info_str += serialize_animal(fox)
-        elif skin_type == fox.get("characteristics").get("skin_type"):
+        elif skin_type == fox.get("characteristics").get("skin_type").lower():
             # For Serialization
             animal_info_str += serialize_animal(fox)
 
@@ -74,7 +74,7 @@ def user_prompt(skin_types):
         input_str = f"Please select a skin type from {skin_types} or '*' to ignore skin selection: "
         skin_type = input(input_str)
         if skin_type.lower() in skin_types:
-            return skin_type
+            return skin_type.lower()
         elif skin_type == '*':
             return None
 
